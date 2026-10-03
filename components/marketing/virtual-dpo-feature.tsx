@@ -16,7 +16,7 @@ export function VirtualDpoFeature({ id, headingLevel = "h2" }: { id?: string; he
       <div className="grid gap-14 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-6">
           <Eyebrow>{virtualDpo.eyebrow}</Eyebrow>
-          <Heading id="vdpo-heading" className="mt-5 font-heading text-h2 leading-snug font-semibold tracking-tight text-foreground">
+          <Heading id="vdpo-heading" className="mt-5 font-display text-h2 leading-snug font-semibold tracking-tight text-foreground">
             {virtualDpo.headline}
           </Heading>
           <Lead className="mt-5">{virtualDpo.description}</Lead>
@@ -32,8 +32,8 @@ export function VirtualDpoFeature({ id, headingLevel = "h2" }: { id?: string; he
         </div>
 
         <div className="lg:col-span-6">
-          <div className="relative rounded-xl border border-border-accent bg-surface-1/70 p-6 shadow-lg backdrop-blur-sm sm:p-8">
-            <p className="font-mono text-eyebrow uppercase tracking-eyebrow text-muted-foreground">How support is provided</p>
+          <div className="relative rounded-xl border border-border-accent bg-card p-6 sm:p-8">
+            <p className="text-eyebrow font-semibold uppercase tracking-eyebrow text-muted-foreground">How support is provided</p>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {virtualDpo.examples.map((ex, i) => (
                 <li

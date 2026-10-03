@@ -9,7 +9,7 @@ export default function NotFound() {
       <div aria-hidden="true" className="bg-grid bg-grid-fade pointer-events-none absolute inset-0 -z-10" />
       <Container className="flex min-h-[60vh] flex-col items-start justify-center py-24">
         <Eyebrow>404 · Page not found</Eyebrow>
-        <h1 className="mt-6 font-heading text-h1 font-semibold tracking-tight text-foreground">This page could not be found.</h1>
+        <h1 className="mt-6 font-display text-h1 font-semibold tracking-tight text-foreground">This page could not be found.</h1>
         <Lead className="mt-5 max-w-xl">The page may have moved, or the link may be incorrect.</Lead>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <ButtonLink href="/">Return home</ButtonLink>

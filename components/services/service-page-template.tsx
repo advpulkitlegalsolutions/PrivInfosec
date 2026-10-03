@@ -66,7 +66,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
         }
         aside={
           <Card className="p-6 sm:p-7">
-            <p className="font-mono text-eyebrow uppercase tracking-eyebrow text-muted-foreground">Key capabilities</p>
+            <p className="text-eyebrow font-semibold uppercase tracking-eyebrow text-muted-foreground">Key capabilities</p>
             <ul className="mt-5 grid gap-2.5">
               {service.highlights.map((h) => (
                 <li key={h} className="flex items-start gap-3 text-small text-subtle-foreground">
@@ -104,7 +104,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
           {service.groups.map((g, i) => (
             <Reveal as="li" key={g.title} delay={(i % 3) * 80}>
               <Card className="h-full p-6 sm:p-7">
-                <p className="font-mono text-caption text-accent-text">
+                <p className="font-medium tabular-nums text-caption text-accent-text">
                   {service.number}.{i + 1}
                 </p>
                 <h3 className="mt-4 font-heading text-h4 font-semibold text-foreground">{g.title}</h3>
@@ -155,7 +155,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
             <ul className="mt-10 divide-y divide-border border-y border-border">
               {service.challenges.map((c, i) => (
                 <li key={c} className="flex gap-5 py-5">
-                  <span className="font-mono text-caption text-accent-text">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-medium tabular-nums text-caption text-accent-text">{String(i + 1).padStart(2, "0")}</span>
                   <p className="text-body text-subtle-foreground">{c}</p>
                 </li>
               ))}
@@ -167,7 +167,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
               {service.howWeHelp.map((h, i) => (
                 <li key={h.stage}>
                   <Card className="flex gap-5 p-6">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-pill border border-border-accent font-mono text-caption text-accent-text">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-pill border border-border-accent font-medium tabular-nums text-caption text-accent-text">
                       0{i + 1}
                     </span>
                     <div>
@@ -244,7 +244,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
 
       {/* Other services */}
       <Section aria-labelledby="other-services-heading" spacing="sm">
-        <h2 id="other-services-heading" className="font-mono text-eyebrow uppercase tracking-eyebrow text-muted-foreground">
+        <h2 id="other-services-heading" className="text-eyebrow font-semibold uppercase tracking-eyebrow text-muted-foreground">
           Other practices
         </h2>
         <ul className="mt-6 grid gap-4 md:grid-cols-3">

@@ -16,10 +16,10 @@ export function ProblemSection() {
         <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
           {problemSection.problems.map((p, i) => (
             <Reveal as="li" key={p.title} delay={i * 80}>
-              <Card className="h-full p-6 sm:p-7">
+              <Card className="group h-full p-6 sm:p-7">
                 <div className="flex items-center justify-between">
-                  <Icon name={p.icon} className="size-6 text-accent-text" />
-                  <span className="font-mono text-caption text-muted-foreground">0{i + 1}</span>
+                  <Icon name={p.icon} className="size-6 text-muted-foreground transition-colors duration-300 group-hover:text-accent-text" />
+                  <span className="font-medium tabular-nums text-caption text-muted-foreground">0{i + 1}</span>
                 </div>
                 <H3 className="mt-8 text-h4">{p.title}</H3>
                 <p className="mt-3 text-small leading-relaxed text-muted-foreground">{p.description}</p>

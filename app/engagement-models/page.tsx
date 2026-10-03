@@ -34,7 +34,7 @@ export default function EngagementModelsPage() {
 
       <Section tone="muted" aria-labelledby="compare-heading">
         <SectionHeader eyebrow="Compare" id="compare-heading" title="Which model fits?" />
-        <div role="region" aria-label="Engagement model comparison" tabIndex={0} className="mt-10 overflow-x-auto rounded-lg border border-border bg-surface-1">
+        <div role="region" aria-label="Engagement model comparison" tabIndex={0} className="mt-10 overflow-x-auto rounded-lg border border-card-border bg-card">
           <table className="w-full min-w-[720px] border-collapse text-left text-small">
             <caption className="sr-only">Comparison of engagement models</caption>
             <thead>

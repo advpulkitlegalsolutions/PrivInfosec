@@ -11,7 +11,7 @@ export function CaseStudyCard({
   return (
     <Card as="article" interactive className="group flex h-full flex-col p-7">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono text-caption uppercase tracking-[0.12em] text-accent-text">{caseStudy.industry}</span>
+        <span className="text-eyebrow font-semibold uppercase tracking-eyebrow text-accent-text">{caseStudy.industry}</span>
         {caseStudy.placeholder && <PlaceholderBadge>Illustrative template</PlaceholderBadge>}
       </div>
       <h3 className="mt-5 font-heading text-h4 leading-snug font-semibold text-foreground">

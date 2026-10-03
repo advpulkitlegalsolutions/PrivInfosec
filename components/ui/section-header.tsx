@@ -36,7 +36,7 @@ export function SectionHeader({
       <H2 as={as} id={id}>
         {title}
       </H2>
-      {description && <Lead className={cn(centered && "mx-auto")}>{description}</Lead>}
+      {description && <Lead className={cn("max-w-[var(--layout-measure)]", centered && "mx-auto")}>{description}</Lead>}
       {actions && <div className={cn("mt-2 flex flex-wrap gap-3", centered && "justify-center")}>{actions}</div>}
     </div>
   );

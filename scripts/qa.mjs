@@ -1,5 +1,5 @@
 /**
- * QA sweep: every route × viewports × themes.
+ * QA sweep: every route × viewports (dark-only site).
  *   - console errors / page errors / failed requests
  *   - horizontal overflow
  *   - axe-core WCAG 2.2 AA scan
@@ -20,7 +20,7 @@ const routes = [
   "/case-studies/privacy-programme-template", "/pricing", "/contact", "/privacy", "/cookies", "/terms",
 ];
 const widths = [320, 375, 768, 1024, 1280, 1440, 1920];
-const themes = ["light", "dark"];
+const themes = ["dark"];
 
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
 const problems = [];
@@ -28,7 +28,6 @@ const seenLinks = new Set();
 
 for (const theme of themes) {
   const context = await browser.newContext({ colorScheme: theme });
-  await context.addInitScript((t) => localStorage.setItem("pi-theme", t), theme);
   const page = await context.newPage();
   const errors = [];
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
@@ -61,7 +60,7 @@ for (const theme of themes) {
           await page.screenshot({ path: `${SCREENS}/${theme}-${width}${route.replace(/\//g, "_") || "_home"}.png`, fullPage: true });
         }
       }
-      if (theme === "light" && width === 1440) {
+      if (width === 1440) {
         const links = await page.$$eval("a[href^='/']", (as) => as.map((a) => a.getAttribute("href")));
         links.forEach((l) => seenLinks.add(l.split("#")[0].split("?")[0]));
       }

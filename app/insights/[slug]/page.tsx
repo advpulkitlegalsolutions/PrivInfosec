@@ -47,7 +47,7 @@ export default async function InsightPage({ params }: PageProps<"/insights/[slug
   return (
     <>
       <article>
-        <header className="border-b border-border bg-surface-2">
+        <header className="border-b border-border bg-background bg-ambient-gold">
           <Container size="default" className="py-12 sm:py-16">
             <Breadcrumb
               items={[
@@ -60,7 +60,7 @@ export default async function InsightPage({ params }: PageProps<"/insights/[slug
                 <Badge variant="accent">{insight.category}</Badge>
                 <Badge variant="muted">{insight.contentType}</Badge>
               </div>
-              <h1 className="mt-6 font-heading text-h1 leading-tight font-semibold tracking-tight text-foreground">{insight.title}</h1>
+              <h1 className="mt-6 font-display text-h1 leading-tight font-semibold tracking-tight text-foreground">{insight.title}</h1>
               <p className="mt-5 text-lead leading-relaxed text-muted-foreground">{insight.excerpt}</p>
               <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-small">
                 <div>

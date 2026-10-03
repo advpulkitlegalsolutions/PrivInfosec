@@ -42,7 +42,7 @@ export function Tabs({
       <div
         role="tablist"
         aria-label={label}
-        className={cn("inline-flex flex-wrap gap-1 rounded-lg border border-border bg-surface-1 p-1", listClassName)}
+        className={cn("inline-flex flex-wrap gap-1 rounded-lg border border-card-border bg-card p-1", listClassName)}
       >
         {items.map((item, i) => {
           const selected = item.id === active;
@@ -63,7 +63,7 @@ export function Tabs({
               className={cn(
                 "min-h-10 rounded-md px-4 text-small font-medium transition-colors duration-200",
                 selected
-                  ? "bg-foreground text-background"
+                  ? "bg-badge text-accent-text ring-1 ring-badge-border ring-inset"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground",
               )}
             >

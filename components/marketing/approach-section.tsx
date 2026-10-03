@@ -14,7 +14,7 @@ export function ApproachSection({ eyebrow = "How we work" }: { eyebrow?: string 
         {approachSection.stages.map((stage, i) => (
           <Reveal as="li" key={stage.title} delay={i * 120} className="relative">
             <div className="flex items-center gap-4">
-              <span className="relative z-10 flex size-11 items-center justify-center rounded-pill border border-border-accent bg-background font-mono text-small text-accent-text">
+              <span className="relative z-10 flex size-11 items-center justify-center rounded-pill border border-border-accent bg-background font-medium tabular-nums text-small text-accent-text">
                 {stage.number}
               </span>
               <span className="h-px flex-1 bg-border lg:hidden" aria-hidden="true" />

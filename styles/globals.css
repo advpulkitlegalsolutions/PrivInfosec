@@ -22,18 +22,21 @@
   --color-surface-3: var(--surface-3);
   --color-surface-raised: var(--surface-raised);
   --color-surface-overlay: var(--surface-overlay);
+  --color-surface-deep: var(--surface-deep);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-border-accent: var(--border-accent);
+  --color-border-accent-strong: var(--border-accent-strong);
+  --color-divider-accent: var(--divider-accent);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-subtle-foreground: var(--subtle-foreground);
+  --color-faint-foreground: var(--faint-foreground);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
   --color-accent-text: var(--accent-text);
-  --color-brand-ink: var(--brand-ink);
   --color-ring: var(--ring);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
@@ -41,15 +44,35 @@
   --color-warning-soft: var(--warning-soft);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+
+  /* Component tokens */
+  --color-nav-link: var(--nav-link);
+  --color-nav-link-active: var(--nav-link-active);
+  --color-card: var(--card-bg);
+  --color-card-hover: var(--card-bg-hover);
+  --color-card-border: var(--card-border);
+  --color-card-border-hover: var(--card-border-hover);
+  --color-input: var(--input-bg);
+  --color-input-border: var(--input-border);
+  --color-input-placeholder: var(--input-placeholder);
+  --color-badge: var(--badge-bg);
+  --color-badge-border: var(--badge-border);
+  --color-badge-foreground: var(--badge-fg);
+  --color-button-secondary: var(--button-secondary-fg);
+  --color-button-secondary-border: var(--button-secondary-border);
+  --color-footer: var(--footer-bg);
+  --color-footer-border: var(--footer-border);
   --color-transparent: transparent;
   --color-current: currentColor;
 
   --shadow-sm: var(--elevation-sm);
   --shadow-md: var(--elevation-md);
   --shadow-lg: var(--elevation-lg);
+  --shadow-focus: var(--input-focus-ring);
 }
 
-/* Theme switching: `dark:` variant follows data-theme, not the OS. */
+/* `dark:` variant follows data-theme (the site is dark-only). */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @layer base {
@@ -76,10 +99,10 @@
     color: var(--foreground);
     font-family: var(--font-body);
     font-size: var(--text-body);
+    font-weight: 400;
     line-height: var(--leading-normal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "cv11", "ss01";
   }
 
   h1,
@@ -89,6 +112,7 @@
   h5,
   h6 {
     font-family: var(--font-heading);
+    font-weight: 600;
     text-wrap: balance;
   }
 
@@ -109,7 +133,7 @@
 
   /* Native dialogs (Modal / Drawer / MobileMenu) */
   dialog::backdrop {
-    background: rgb(7 9 11 / 0.6);
+    background: rgb(5 5 5 / 0.7);
     backdrop-filter: blur(4px);
   }
 
@@ -137,7 +161,18 @@
   /* Hairline gold rule — used sparingly as a divider/accent. */
   .rule-gold {
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+    background: linear-gradient(90deg, transparent, var(--divider-accent), transparent);
+  }
+
+  /* Alternate section tone, blended into the page at both edges. */
+  .bg-section-muted {
+    background-color: var(--background);
+    background-image: var(--gradient-section);
+  }
+
+  /* Understated gold light for hero / premium bands (no glow). */
+  .bg-ambient-gold {
+    background-image: var(--ambient-gold);
   }
 
   .text-metal {
@@ -147,8 +182,16 @@
     color: transparent;
   }
 
+  .text-wordmark {
+    background: var(--gradient-wordmark);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   /* Long-form content (insights, legal, case studies). */
   .prose-pi {
+    max-width: var(--layout-prose);
     color: var(--subtle-foreground);
     font-size: 1.0625rem;
     line-height: var(--leading-relaxed);
@@ -160,7 +203,7 @@
     margin-top: 2.25em;
     color: var(--foreground);
     font-size: var(--text-h3);
-    line-height: var(--leading-snug);
+    line-height: 1.2;
     letter-spacing: var(--tracking-snug);
     font-weight: 600;
   }
@@ -177,11 +220,13 @@
   .prose-pi a {
     color: var(--foreground);
     text-decoration: underline;
-    text-decoration-color: var(--accent);
+    text-decoration-color: var(--border-accent);
     text-underline-offset: 3px;
+    transition: color var(--duration-fast) ease, text-decoration-color var(--duration-fast) ease;
   }
   .prose-pi a:hover {
-    text-decoration-thickness: 2px;
+    color: var(--accent-text);
+    text-decoration-color: var(--accent-text);
   }
   .prose-pi strong {
     color: var(--foreground);
@@ -266,15 +311,14 @@
   }
   .js .reveal:not([data-revealed="true"]) {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
 
+  /* Understated line motion (hero illustration only). */
   .animate-flow {
     stroke-dasharray: 4 10;
-    animation: pi-flow 2.4s linear infinite;
-  }
-  .animate-pulse-soft {
-    animation: pi-pulse 3.2s var(--ease-in-out) infinite;
+    opacity: 0.7;
+    animation: pi-flow 4s linear infinite;
   }
   .animate-marquee {
     animation: pi-marquee 48s linear infinite;
@@ -288,15 +332,6 @@
 @keyframes pi-flow {
   to {
     stroke-dashoffset: -56;
-  }
-}
-@keyframes pi-pulse {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 1;
   }
 }
 @keyframes pi-marquee {

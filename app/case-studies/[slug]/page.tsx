@@ -28,7 +28,7 @@ function Block({ index, title, children }: { index: string; title: string; child
   return (
     <div className="grid gap-6 border-t border-border py-10 lg:grid-cols-12">
       <div className="lg:col-span-4">
-        <p className="font-mono text-caption text-accent-text">{index}</p>
+        <p className="font-medium tabular-nums text-caption text-accent-text">{index}</p>
         <h2 className="mt-2 font-heading text-h3 font-semibold text-foreground">{title}</h2>
       </div>
       <div className="text-body leading-relaxed text-subtle-foreground lg:col-span-8">{children}</div>

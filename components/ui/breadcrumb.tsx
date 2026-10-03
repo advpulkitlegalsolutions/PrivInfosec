@@ -23,7 +23,7 @@ export function Breadcrumb({ items, className }: { items: Crumb[]; className?: s
                   </span>
                 ) : (
                   <>
-                    <Link href={item.path} className="rounded-xs transition-colors hover:text-foreground">
+                    <Link href={item.path} className="rounded-xs transition-colors hover:text-accent-text">
                       {item.name}
                     </Link>
                     <ChevronRight aria-hidden="true" className="size-3.5 opacity-60" />

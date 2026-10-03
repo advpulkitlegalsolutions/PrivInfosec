@@ -1,4 +1,3 @@
-import { Quote } from "lucide-react";
 import Image from "next/image";
 import { PlaceholderBadge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -12,10 +11,10 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <Card as="article" className="flex h-full flex-col p-7 sm:p-8">
       <div className="flex items-center justify-between">
-        <Quote aria-hidden="true" className="size-6 text-accent-text" strokeWidth={1.5} />
+        <span aria-hidden="true" className="h-px w-8 bg-accent" />
         {isPlaceholder && <PlaceholderBadge>Development placeholder</PlaceholderBadge>}
       </div>
-      <blockquote className="mt-6 flex-1 font-heading text-h4 leading-snug font-medium text-foreground">
+      <blockquote className="mt-6 flex-1 font-heading text-h4 leading-[1.45] font-normal text-foreground">
         <p>“{testimonial.quote}”</p>
       </blockquote>
       <footer className="mt-8 flex items-center gap-4 border-t border-border pt-6">

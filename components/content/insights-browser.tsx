@@ -24,7 +24,7 @@ export function InsightsBrowser({ insights, categories }: { insights: Summary[];
             className={cn(
               "min-h-10 rounded-pill border px-4 text-small font-medium transition-colors",
               active === c
-                ? "border-foreground bg-foreground text-background"
+                ? "border-badge-border bg-badge text-accent-text"
                 : "border-border text-muted-foreground hover:border-border-strong hover:text-foreground",
             )}
           >

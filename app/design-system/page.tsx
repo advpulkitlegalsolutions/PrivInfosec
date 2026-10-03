@@ -14,7 +14,6 @@ import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Checkbox, Field, Input, Select, Textarea } from "@/components/ui/form";
 import { Body, Caption, Display, Eyebrow, H1, H2, H3, H4, Lead, Small } from "@/components/ui/typography";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { colorTokens, radiusScale, spacingScale, typeScale } from "@/config/theme";
 import { frameworks } from "@/data/frameworks";
 import { industries } from "@/data/industries";
@@ -60,7 +59,7 @@ function Swatches() {
   );
 }
 
-function ThemePreview({ theme }: { theme: "light" | "dark" }) {
+function ThemePreview({ theme }: { theme: "dark" }) {
   return (
     <div data-theme={theme} className="rounded-xl border border-border bg-background p-6 text-foreground">
       <p className="font-mono text-caption uppercase tracking-eyebrow text-muted-foreground">{theme} theme</p>
@@ -95,7 +94,6 @@ export default function DesignSystemPage() {
             <code className="font-mono text-foreground">config/theme.ts</code>. Every component below uses semantic tokens only.
           </Lead>
         </div>
-        <ThemeToggle />
       </div>
 
       <nav aria-label="Design system sections" className="mt-10 flex flex-wrap gap-2">
@@ -110,11 +108,8 @@ export default function DesignSystemPage() {
         <Swatches />
       </Block>
 
-      <Block title="Light & dark themes" id="themes">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <ThemePreview theme="light" />
-          <ThemePreview theme="dark" />
-        </div>
+      <Block title="Dark theme" id="themes">
+        <ThemePreview theme="dark" />
       </Block>
 
       <Block title="Typography" id="typography">

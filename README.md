@@ -4,7 +4,7 @@
 
 - **Stack:** Next.js 16 (App Router, Turbopack) · React 19 · TypeScript (strict) · Tailwind CSS 4 · Zod 4 · React Hook Form · Lucide · MDX (next-mdx-remote) · pnpm
 - **Rendering:** every page is statically generated; only `/api/contact` runs on the server.
-- **Design system:** token-driven (`styles/tokens.css`, `config/theme.ts`), light / dark / system themes, reference page at `/design-system` (development only).
+- **Design system:** token-driven (`styles/tokens.css`, `config/theme.ts`), dark-only theme, reference page at `/design-system` (development only).
 
 ---
 
@@ -83,29 +83,39 @@ Server Components are the default. Client Components are limited to the header/m
 
 ## Theme & design system
 
-All visual decisions come from **`styles/tokens.css`**. Components use semantic Tailwind utilities (`bg-surface-1`, `text-muted-foreground`, `border-border-accent`, `text-h2`, `rounded-lg`, `py-section-md` …) — never raw hex values. The default Tailwind colour palette is deliberately disabled, so an arbitrary colour utility will not compile into the CSS.
+All visual decisions come from **`styles/tokens.css`**, organised in three layers so the theme can be changed in one place:
+
+1. **Brand** (`--brand-*`) — raw identity values: gold (`--brand-gold #C99A3D`, `--brand-gold-light #E2BE6A` …), the near-black → charcoal ladder, warm whites/greys, muted functional colours, and the metallic `--gradient-gold`.
+2. **Semantic** (`--background`, `--foreground`, `--surface-*`, `--border*`, `--accent*`, `--muted-foreground` …) — what components use.
+3. **Component** (`--nav-*`, `--button-*`, `--card-*`, `--input-*`, `--badge-*`, `--footer-*`) — per-component decisions.
+
+Components use semantic/component Tailwind utilities (`bg-card`, `border-card-border`, `text-muted-foreground`, `text-accent-text`, `text-h2`, `rounded-lg`, `py-section-md` …) — never raw hex values. The default Tailwind colour palette is deliberately disabled, so an arbitrary colour utility will not compile into the CSS.
+
+**Brand rules.** Roughly 70% black/charcoal, 20% warm white/grey, 10% gold. Gold is for primary CTAs, eyebrow labels, active states, key stats, focus rings and thin rules — never paragraphs, large fills or every border. Metallic gradients (`text-metal`, `--gradient-gold`) are reserved for the hero highlight, headline statistics and the logo. Icons are neutral grey by default and turn gold on hover. Prefer borders and tonal surfaces over shadows; no glows.
 
 | Want to change… | Edit |
 | --- | --- |
-| **Gold accent** | `--palette-gold-*` in `styles/tokens.css`. `--accent` (fills) uses gold-500 in light mode and `#d0ad65` in dark mode; `--accent-text` (gold used as text/icons) uses darker gold-700 in light mode so it passes WCAG AA. Re-check contrast if you change these. |
-| **Primary colours** | `--brand-*` and the semantic tokens (`--background`, `--foreground`, `--surface-*`, `--border*`) in the light block (`:root, [data-theme="light"]`). |
-| **Light mode** | The `:root, [data-theme="light"]` block. |
-| **Dark mode** | The `[data-theme="dark"]` block. It is designed separately (warmer inks, lifted surfaces, brighter gold text), not inverted. |
-| **Fonts** | `app/fonts.ts` — swap the `next/font/google` imports but keep the `variable` names. Then `--font-heading / --font-body / --font-mono` in the `@theme` block of `tokens.css` pick them up. |
-| **Type scale** | `--text-*`, `--leading-*`, `--tracking-*` in the `@theme` block. If you add a new size token, also add its name to `extendTailwindMerge` in `lib/utils.ts`. |
-| **Radius** | `--radius-*` in the `@theme` block. |
+| **Gold** | `--brand-gold*` in `styles/tokens.css`. `--accent` (fills) is `#C99A3D`; `--accent-text` (gold as small text/icons) is `#E2BE6A` for AA contrast on black. Never use `--brand-gold-dark` for small text. Re-check WCAG AA if you change these. |
+| **Backgrounds & surfaces** | `--brand-black-*` and the semantic mapping (`--background #070707`, `--surface-2 #101010`, cards `#171717`, raised `#222222`, footer `#050505`). Alternate sections (`tone="muted"`) fade in/out via `--gradient-section` to avoid stripes; premium bands (`tone="ink"`, hero) use the subtle `--ambient-gold`. |
+| **Text colours** | `--foreground` (headings `#F4F2ED`), `--subtle-foreground` (body `#C7C4BD`), `--muted-foreground` (supporting `#918E88`), `--nav-link` (`#B9B6AF`). |
+| **Buttons, cards, inputs, nav, badges, footer** | The component layer (`--button-*`, `--card-*`, `--input-*`, `--nav-*`, `--badge-*`, `--footer-*`). |
+| **Future light theme** | Re-map the semantic and component layers under `[data-theme="light"]` (a commented starter is in `tokens.css`) and switch the `data-theme` on `<html>` in `app/layout.tsx`. No component changes needed. |
+| **Fonts** | `app/fonts.ts` — Rethink Sans (variable) for everything: wordmark, headings, body, nav, buttons, forms, labels. Weights: 400 body, 500 nav/labels, 600 headings/buttons, 700 hero emphasis; avoid 800–900. `--font-display / --font-heading / --font-body` in the `@theme` block point at it; `--font-mono` is a system monospace for code only. |
+| **Type scale** | `--text-*` (with default `--text-*--line-height`), `--leading-*`, `--tracking-*` in the `@theme` block. Hero: `text-display` (600, line-height 1.02, −0.04em); sections: `text-h2` (600, 1.1, −0.03em); card titles: `text-h4`; eyebrows: `text-eyebrow` 600 uppercase `tracking-eyebrow` (0.12em). If you add a new size token, also add its name to `extendTailwindMerge` in `lib/utils.ts`. |
+| **Radius** | `--radius-*` in the `@theme` block (`md` 9px buttons/inputs, `lg` 14px cards, `xl` 18px panels). |
 | **Spacing** | Tailwind’s numeric scale uses a 4px base (`--spacing: 0.25rem`); section rhythm uses `--spacing-section-sm/md/lg` (`py-section-md`). Raw `--space-*` tokens are available for hand-written CSS. |
-| **Shadows** | `--elevation-sm/md/lg` (per theme). |
+| **Content width** | `--layout-prose` (68ch, long-form copy) and `--layout-measure` (58ch, section descriptions). |
+| **Shadows** | `--elevation-md/lg` — only for floating layers (menus, dialogs, consent banner). |
 | **Layout widths, header height** | `--layout-*` tokens. |
-| **Motion** | `--duration-*`, `--ease-*`; keyframes at the end of `styles/globals.css`. All motion is disabled under `prefers-reduced-motion`. |
+| **Motion** | `--duration-*` (180–350ms), `--ease-*`; keyframes at the end of `styles/globals.css`. All motion is disabled under `prefers-reduced-motion`. |
 
-**Ink bands.** Any element with `data-theme="dark"` re-scopes the dark tokens to its subtree. `<Section tone="ink">` uses this to render the black-and-gold bands (hero, Virtual DPO feature, final CTA, footer) in both site themes.
+**Bands.** `<Section tone="ink">` (hero-style premium bands, Virtual DPO feature, final CTA) adds the understated gold ambience; `tone="muted"` is the blended alternate surface. The footer uses the deepest tone (`--footer-bg`) with a thin gold top border.
 
-**Theme modes.** Light, Dark and System. An inline script in `<head>` (`lib/theme.ts`) applies the stored mode before first paint (no flash) and follows OS changes in System mode. The header toggle flips light/dark; the footer and mobile menu offer all three modes. Behaviour settings live in `config/theme.ts`.
+**Dark-only.** There is no theme switcher. `lib/theme.ts` only adds the `js` class before first paint (used by scroll reveals), and `config/theme.ts` holds the browser `theme-color`.
 
-**Logo.** `components/brand/logo.tsx` contains a temporary wordmark. Replace `LogoMark` / the wordmark markup with the final SVG (e.g. `public/brand/logo.svg`); the header, mobile menu and footer all render `<Logo />`. Also replace `app/icon.svg` and `public/brand/logo-mark.svg`.
+**Logo.** `components/brand/logo.tsx` holds a vector redraw of the black-and-gold "P" monogram plus the Rethink Sans wordmark ("Priv" in ink, "Infosec" in gold via `--gradient-wordmark`). The mark's ink parts use `currentColor`, so it adapts automatically. The header, mobile menu and footer all render `<Logo />`; the hero illustration embeds the same artwork. On dark backgrounds the ink parts render warm white (the light logo version), keeping separation from the black. Static copies of the mark: `app/icon.svg` (favicon), `public/brand/logo-mark.svg` (on a near-black tile), `public/brand/logo-mark-light.svg` (transparent, for dark backgrounds) and `public/brand/logo-mark-transparent.svg` (transparent, charcoal ink, for light backgrounds); `app/opengraph-image.tsx` embeds `logo-mark.svg`.
 
-**Reference page.** Run `pnpm dev` and open `/design-system` (colours, typography, spacing, radius, buttons, forms, cards, badges, icons, tables, alerts, navigation, pricing/service cards, framework badges, light + dark previews). It returns 404 in production unless `ENABLE_DESIGN_SYSTEM=true`, is `noindex`, and is disallowed in `robots.txt`.
+**Reference page.** Run `pnpm dev` and open `/design-system` (colours, typography, spacing, radius, buttons, forms, cards, badges, icons, tables, alerts, navigation, pricing/service cards, framework badges, dark theme preview). It returns 404 in production unless `ENABLE_DESIGN_SYSTEM=true`, is `noindex`, and is disallowed in `robots.txt`.
 
 ---
 
@@ -222,7 +232,7 @@ The webhook provider signs bodies with `X-PrivInfosec-Signature: sha256=<HMAC of
 - No analytics, advertising or third-party trackers load by default.
 - When `NEXT_PUBLIC_ANALYTICS_PROVIDER` is set (Plausible or Umami), a consent banner appears; the script is injected **only after opt-in**, and withdrawing consent reloads the page so it is no longer present (`components/privacy/consent-manager.tsx`).
 - With no analytics configured, no banner is shown (nothing optional to consent to). Cookie Preferences remain available from the footer and the Cookie Notice.
-- Consent is stored under `pi-consent` (versioned — bump `CONSENT_VERSION` in `lib/consent.ts` to re-ask after material changes); theme under `pi-theme`. Both are listed in the Cookie Notice.
+- Consent is stored under `pi-consent` (versioned — bump `CONSENT_VERSION` in `lib/consent.ts` to re-ask after material changes). It is listed in the Cookie Notice.
 - If Google Analytics is ever added, load it through the same consent-gated path in the consent manager.
 
 ---
@@ -255,7 +265,7 @@ pnpm build && pnpm start &                   # then, in another terminal:
 BASE_URL=http://localhost:3000 pnpm qa       # needs Playwright's Chromium (CHROMIUM_PATH to override)
 ```
 
-`scripts/qa.mjs` visits every route at 320–1920px in light and dark themes and fails on console/page errors, failed requests, horizontal overflow, axe-core WCAG 2.2 AA violations, and broken internal links.
+`scripts/qa.mjs` visits every route at 320–1920px (dark theme) and fails on console/page errors, failed requests, horizontal overflow, axe-core WCAG 2.2 AA violations, and broken internal links.
 
 ---
 

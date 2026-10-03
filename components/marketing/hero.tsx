@@ -12,23 +12,19 @@ export function Hero() {
       data-theme="dark"
       data-band="ink"
       aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden bg-background text-foreground"
+      className="relative isolate overflow-hidden bg-background bg-ambient-gold text-foreground"
     >
       <div aria-hidden="true" className="bg-grid bg-grid-fade pointer-events-none absolute inset-0 -z-10" />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-[-10%] -z-10 h-[36rem] w-[36rem] rounded-full bg-accent-soft blur-3xl"
-      />
       <Container size="wide" className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-8 lg:py-24 xl:py-28">
         <div className="lg:col-span-7">
           <Eyebrow>Privacy · Information Security · Governance</Eyebrow>
           <h1
             id="hero-title"
-            className="mt-6 max-w-[17ch] font-heading text-display leading-tight font-semibold tracking-tight text-foreground"
+            className="mt-6 max-w-[16ch] font-display text-display leading-display font-semibold tracking-display text-foreground"
           >
-            Your <span className="text-metal">Trusted Arm</span> for Privacy, Security &amp; Compliance.
+            Your <span className="text-metal font-bold">Trusted Arm</span> for Privacy, Security &amp; Compliance.
           </h1>
-          <Lead className="mt-6 max-w-2xl">
+          <Lead className="mt-7 max-w-[var(--layout-measure)] text-muted-foreground">
             {siteConfig.name} provides practical advisory and implementation support to businesses navigating data
             privacy, cybersecurity, technology and compliance risk.
           </Lead>
@@ -41,7 +37,7 @@ export function Hero() {
               Explore Our Services
             </ButtonLink>
           </div>
-          <ul className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-caption text-muted-foreground" aria-label="Engagement models">
+          <ul className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-small font-medium text-muted-foreground" aria-label="Engagement models">
             {engagementModels.map((m, i) => (
               <li key={m.id} className="inline-flex items-center gap-3">
                 {i > 0 && <span aria-hidden="true" className="size-1 rounded-full bg-accent" />}

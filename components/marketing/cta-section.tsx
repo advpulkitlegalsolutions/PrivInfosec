@@ -22,13 +22,9 @@ export function CTASection({
 }: CTAProps) {
   return (
     <Section tone="ink" grid aria-labelledby="cta-heading" spacing="lg" className="overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-[-30%] left-1/2 -z-10 h-[30rem] w-[50rem] -translate-x-1/2 rounded-full bg-accent-soft blur-3xl"
-      />
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 id="cta-heading" className="mt-6 font-heading text-h1 leading-tight font-semibold tracking-tight text-foreground">
+        <h2 id="cta-heading" className="mt-6 font-display text-h1 leading-tight font-semibold tracking-tight text-foreground">
           {title}
         </h2>
         <Lead className="mt-6 max-w-2xl">{description}</Lead>

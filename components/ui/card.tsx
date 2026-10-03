@@ -7,8 +7,9 @@ type CardProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 /**
- * Base card surface. `interactive` adds the hover treatment used for
- * linked cards (gold hairline + lift); pair with a stretched link inside.
+ * Base card surface (component tokens --card-*). `interactive` adds the
+ * hover treatment used for linked cards: gold hairline, slight lift and
+ * surface change — no shadow. Pair with a stretched link inside.
  */
 export function Card({ className, interactive, variant = "default", as = "div", ...props }: CardProps) {
   const Tag = as as React.ElementType;
@@ -16,12 +17,12 @@ export function Card({ className, interactive, variant = "default", as = "div", 
     <Tag
       className={cn(
         "relative rounded-lg border",
-        variant === "default" && "border-border bg-surface-1",
-        variant === "muted" && "border-border bg-surface-2",
-        variant === "outline" && "border-border bg-transparent",
-        variant === "accent" && "border-border-accent bg-surface-1",
+        variant === "default" && "border-card-border bg-card",
+        variant === "muted" && "border-card-border bg-surface-2",
+        variant === "outline" && "border-card-border bg-transparent",
+        variant === "accent" && "border-border-accent bg-card",
         interactive &&
-          "transition-[border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-border-accent hover:shadow-md focus-within:border-border-accent",
+          "transition-[border-color,background-color,transform] duration-300 ease-out hover:-translate-y-[3px] hover:border-card-border-hover hover:bg-card-hover focus-within:border-card-border-hover",
         className,
       )}
       {...props}

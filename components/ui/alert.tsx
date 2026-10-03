@@ -2,7 +2,7 @@ import { CircleAlert, CircleCheck, Info, TriangleAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const config = {
-  info: { icon: Info, cls: "border-border bg-surface-2 text-foreground", iconCls: "text-accent-text" },
+  info: { icon: Info, cls: "border-border bg-surface-2 text-foreground", iconCls: "text-info" },
   success: { icon: CircleCheck, cls: "border-transparent bg-success-soft text-foreground", iconCls: "text-success" },
   warning: { icon: TriangleAlert, cls: "border-transparent bg-warning-soft text-foreground", iconCls: "text-warning" },
   danger: { icon: CircleAlert, cls: "border-transparent bg-danger-soft text-foreground", iconCls: "text-danger" },

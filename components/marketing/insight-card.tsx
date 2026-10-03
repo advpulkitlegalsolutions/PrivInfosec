@@ -18,7 +18,7 @@ export function InsightCard({ insight, headingLevel = "h3" }: { insight: Insight
   return (
     <Card as="article" interactive className="group flex h-full flex-col p-6 sm:p-7">
       <div className="flex items-center gap-2 text-caption">
-        <span className="font-mono uppercase tracking-[0.12em] text-accent-text">{insight.category}</span>
+        <span className="font-semibold uppercase tracking-eyebrow text-accent-text">{insight.category}</span>
         <span aria-hidden="true" className="text-border-strong">/</span>
         <span className="text-muted-foreground">{insight.contentType}</span>
       </div>

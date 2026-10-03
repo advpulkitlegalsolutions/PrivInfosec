@@ -73,7 +73,7 @@ export function ConsentManager() {
           <p className="mt-2 text-small text-muted-foreground">
             We use privacy-friendly analytics to understand how our website is used — only if you agree. Essential storage (such as your theme
             and consent choice) is always used. See our{" "}
-            <Link href="/cookies" className="text-foreground underline decoration-accent underline-offset-4">
+            <Link href="/cookies" className="text-foreground underline decoration-border-accent underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent-text">
               Cookie Notice
             </Link>
             .

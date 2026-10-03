@@ -16,7 +16,7 @@ function Initials({ name }: { name: string }) {
     .toUpperCase();
   return (
     <div aria-hidden="true" className="flex aspect-square w-full items-center justify-center rounded-lg border border-border bg-surface-2">
-      <span className="font-heading text-h2 font-semibold text-muted-foreground">{initials}</span>
+      <span className="font-display text-h2 font-semibold text-muted-foreground">{initials}</span>
     </div>
   );
 }

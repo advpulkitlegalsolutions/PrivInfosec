@@ -11,17 +11,16 @@ type Props<T extends HeadingTag = HeadingTag> = React.HTMLAttributes<HTMLElement
 
 export const typeStyles = {
   display:
-    "font-heading text-display font-semibold leading-tight tracking-tight text-foreground",
-  h1: "font-heading text-h1 font-semibold leading-tight tracking-tight text-foreground",
-  h2: "font-heading text-h2 font-semibold leading-snug tracking-tight text-foreground",
-  h3: "font-heading text-h3 font-semibold leading-snug tracking-snug text-foreground",
-  h4: "font-heading text-h4 font-semibold leading-snug text-foreground",
-  lead: "text-lead leading-relaxed text-muted-foreground",
-  body: "text-body leading-normal text-muted-foreground",
+    "font-display text-display font-semibold leading-display tracking-display text-foreground",
+  h1: "font-display text-h1 font-semibold leading-tight tracking-tight text-foreground",
+  h2: "font-display text-h2 font-semibold leading-tight tracking-tight text-foreground",
+  h3: "font-heading text-h3 font-semibold leading-[1.2] tracking-snug text-foreground",
+  h4: "font-heading text-h4 font-semibold leading-[1.3] tracking-[-0.01em] text-foreground",
+  lead: "text-lead leading-relaxed text-subtle-foreground",
+  body: "text-body leading-normal text-subtle-foreground",
   small: "text-small leading-normal text-muted-foreground",
   caption: "text-caption leading-normal text-muted-foreground",
-  eyebrow:
-    "font-mono text-eyebrow font-medium uppercase tracking-eyebrow text-accent-text",
+  eyebrow: "text-eyebrow font-semibold uppercase tracking-eyebrow text-accent-text",
 } as const;
 
 const make = (style: keyof typeof typeStyles, fallback: HeadingTag) =>
@@ -40,7 +39,7 @@ export const Body = make("body", "p");
 export const Small = make("small", "p");
 export const Caption = make("caption", "p");
 
-/** Small uppercase label with a short gold rule. */
+/** Small uppercase gold label with a short gold rule. */
 export function Eyebrow({ as, className, children, rule = true, ...props }: Props & { rule?: boolean }) {
   const Tag = (as ?? "p") as React.ElementType;
   return (

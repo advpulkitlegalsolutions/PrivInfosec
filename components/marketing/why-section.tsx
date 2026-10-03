@@ -15,8 +15,8 @@ export function WhySection() {
       />
       <ul className="mt-14 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
         {differentiators.map((d, i) => (
-          <Reveal as="li" key={d.title} delay={i * 80} className="bg-background p-7 sm:p-8">
-            <Icon name={d.icon} className="size-6 text-accent-text" />
+          <Reveal as="li" key={d.title} delay={i * 80} className="group bg-background p-7 sm:p-8">
+            <Icon name={d.icon} className="size-6 text-muted-foreground transition-colors duration-300 group-hover:text-accent-text" />
             <h3 className="mt-8 font-heading text-h4 font-semibold text-foreground">{d.title}</h3>
             <p className="mt-3 text-small leading-relaxed text-muted-foreground">{d.description}</p>
           </Reveal>

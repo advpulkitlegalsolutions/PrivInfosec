@@ -27,7 +27,7 @@ export function PageHero({
   return (
     <section
       {...(ink ? { "data-theme": "dark", "data-band": "ink" } : {})}
-      className={cn("relative isolate overflow-hidden bg-background text-foreground", !ink && "border-b border-border")}
+      className={cn("relative isolate overflow-hidden bg-background text-foreground", ink ? "bg-ambient-gold" : "border-b border-border")}
     >
       <div aria-hidden="true" className="bg-grid bg-grid-fade pointer-events-none absolute inset-0 -z-10" />
       <Container size="wide" className="py-12 sm:py-16 lg:py-20">
@@ -35,11 +35,11 @@ export function PageHero({
         <div className={cn("mt-10 grid gap-10", aside && "lg:grid-cols-12 lg:items-end")}>
           <div className={cn(aside && "lg:col-span-7")}>
             <div className="flex items-center gap-4">
-              {number && <span className="font-mono text-small text-accent-text">{number}</span>}
+              {number && <span className="font-medium tabular-nums text-small text-accent-text">{number}</span>}
               {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
             </div>
-            <h1 className="mt-5 max-w-[22ch] font-heading text-h1 leading-tight font-semibold tracking-tight text-foreground">{title}</h1>
-            {description && <Lead className="mt-6 max-w-2xl">{description}</Lead>}
+            <h1 className="mt-5 max-w-[22ch] font-display text-h1 leading-tight font-semibold tracking-tight text-foreground">{title}</h1>
+            {description && <Lead className="mt-6 max-w-[var(--layout-measure)]">{description}</Lead>}
             {actions && <div className="mt-9 flex flex-col gap-3 sm:flex-row">{actions}</div>}
           </div>
           {aside && <div className="lg:col-span-5">{aside}</div>}

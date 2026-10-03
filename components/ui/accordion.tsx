@@ -33,7 +33,7 @@ export function AccordionItem({
           <Plus className="size-4" />
         </span>
       </summary>
-      <div className="max-w-3xl pb-6 pr-12 text-body leading-relaxed text-muted-foreground">{children}</div>
+      <div className="max-w-[var(--layout-prose)] pb-6 pr-12 text-body leading-relaxed text-subtle-foreground">{children}</div>
     </details>
   );
 }

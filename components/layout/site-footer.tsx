@@ -6,18 +6,17 @@ import { CookiePreferencesButton } from "@/components/privacy/cookie-preferences
 import { Container } from "@/components/ui/container";
 import { footerNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
-import { ThemeToggle } from "./theme-toggle";
 
 function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
     <div>
-      <h2 className="font-mono text-eyebrow uppercase tracking-eyebrow text-muted-foreground">{title}</h2>
+      <h2 className="text-eyebrow font-semibold uppercase tracking-eyebrow text-foreground">{title}</h2>
       <ul className="mt-5 space-y-1">
         {links.map((l) => (
           <li key={l.href}>
             <Link
               href={l.href}
-              className="inline-flex min-h-9 items-center text-small text-subtle-foreground transition-colors hover:text-foreground"
+              className="inline-flex min-h-9 items-center text-small text-muted-foreground transition-colors hover:text-accent-text"
             >
               {l.label}
             </Link>
@@ -33,8 +32,7 @@ export function SiteFooter() {
   const { email, phone, location, social } = siteConfig;
 
   return (
-    <footer data-theme="dark" data-band="ink" className="relative bg-background text-foreground">
-      <div className="rule-gold" aria-hidden="true" />
+    <footer className="relative border-t border-footer-border bg-footer text-muted-foreground">
       <Container size="wide" className="py-16 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -45,29 +43,29 @@ export function SiteFooter() {
             <ul className="mt-8 space-y-3 text-small">
               {email && (
                 <li>
-                  <a href={`mailto:${email}`} className="inline-flex items-center gap-3 text-subtle-foreground hover:text-foreground">
-                    <Mail aria-hidden="true" className="size-4 text-accent-text" />
+                  <a href={`mailto:${email}`} className="inline-flex items-center gap-3 text-muted-foreground transition-colors hover:text-accent-text">
+                    <Mail aria-hidden="true" className="size-4" />
                     {email}
                   </a>
                 </li>
               )}
               {phone && (
                 <li>
-                  <a href={`tel:${phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-3 text-subtle-foreground hover:text-foreground">
-                    <Phone aria-hidden="true" className="size-4 text-accent-text" />
+                  <a href={`tel:${phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-3 text-muted-foreground transition-colors hover:text-accent-text">
+                    <Phone aria-hidden="true" className="size-4" />
                     {phone}
                   </a>
                 </li>
               )}
               {location && (
-                <li className="inline-flex items-center gap-3 text-subtle-foreground">
-                  <MapPin aria-hidden="true" className="size-4 text-accent-text" />
+                <li className="inline-flex items-center gap-3 text-muted-foreground">
+                  <MapPin aria-hidden="true" className="size-4" />
                   {location}
                 </li>
               )}
               {!email && !phone && (
                 <li>
-                  <Link href="/contact" className="text-subtle-foreground underline decoration-accent underline-offset-4 hover:text-foreground">
+                  <Link href="/contact" className="text-muted-foreground underline decoration-border-accent underline-offset-4 transition-colors hover:text-accent-text">
                     Get in touch via our contact form
                   </Link>
                 </li>
@@ -83,16 +81,16 @@ export function SiteFooter() {
             <div>
               <FooterColumn title="Legal" links={footerNav.legal} />
               <div className="mt-1">
-                <CookiePreferencesButton className="inline-flex min-h-9 items-center text-small text-subtle-foreground transition-colors hover:text-foreground" />
+                <CookiePreferencesButton className="inline-flex min-h-9 items-center text-small text-muted-foreground transition-colors hover:text-accent-text" />
               </div>
               {social.linkedin && (
                 <div className="mt-8">
-                  <h2 className="font-mono text-eyebrow uppercase tracking-eyebrow text-muted-foreground">Social</h2>
+                  <h2 className="text-eyebrow font-semibold uppercase tracking-eyebrow text-foreground">Social</h2>
                   <a
                     href={social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex size-10 items-center justify-center rounded-md border border-border text-subtle-foreground transition-colors hover:border-border-accent hover:text-foreground"
+                    className="mt-4 inline-flex size-10 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-border-accent hover:text-accent-text"
                     aria-label={`${siteConfig.name} on LinkedIn (opens in a new tab)`}
                   >
                     <LinkedInIcon className="size-4" />
@@ -103,11 +101,10 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 border-t border-border pt-8">
           <p className="text-caption text-muted-foreground">
             © {year} {siteConfig.legalName}. All rights reserved.
           </p>
-          <ThemeToggle />
         </div>
       </Container>
     </footer>

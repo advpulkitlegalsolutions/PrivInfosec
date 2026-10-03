@@ -20,8 +20,9 @@ const spacingMap = {
 
 /**
  * Page section primitive.
- * tone="ink" scopes the dark token set to this subtree (data-theme="dark"),
- * producing the signature black-and-gold band in either site theme.
+ * tone="muted" is the subtle alternate surface; tone="ink" adds the
+ * understated gold ambience used for premium bands. Both stay close to
+ * the page black so sections flow without obvious stripes.
  */
 export function Section({
   tone = "default",
@@ -39,8 +40,8 @@ export function Section({
       className={cn(
         "relative isolate",
         tone === "default" && "bg-background",
-        tone === "muted" && "bg-surface-2",
-        tone === "ink" && "bg-background text-foreground",
+        tone === "muted" && "bg-section-muted",
+        tone === "ink" && "bg-background bg-ambient-gold text-foreground",
         spacingMap[spacing],
         className,
       )}

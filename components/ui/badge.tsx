@@ -6,8 +6,8 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-border bg-surface-1 text-subtle-foreground",
-        accent: "border-border-accent bg-accent-soft text-accent-text",
+        default: "border-border bg-surface-3 text-subtle-foreground",
+        accent: "border-badge-border bg-badge text-badge-foreground",
         solid: "border-transparent bg-accent text-accent-foreground",
         muted: "border-transparent bg-muted text-muted-foreground",
         outline: "border-border-strong bg-transparent text-foreground",
@@ -29,7 +29,7 @@ export function Badge({
 /** Visible marker for development placeholders (never ship silently). */
 export function PlaceholderBadge({ className, children = "Placeholder" }: { className?: string; children?: React.ReactNode }) {
   return (
-    <Badge variant="warning" className={cn("font-mono whitespace-normal uppercase tracking-wider", className)}>
+    <Badge variant="warning" className={cn("whitespace-normal text-[0.6875rem] font-semibold uppercase tracking-eyebrow", className)}>
       {children}
     </Badge>
   );

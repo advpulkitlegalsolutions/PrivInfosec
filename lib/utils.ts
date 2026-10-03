@@ -9,10 +9,10 @@ import { extendTailwindMerge } from "tailwind-merge";
 const twMerge = extendTailwindMerge({
   extend: {
     theme: {
-      text: ["display", "h1", "h2", "h3", "h4", "price", "lead", "body", "small", "caption", "eyebrow"],
+      text: ["display", "h1", "h2", "h3", "h4", "price", "lead", "body", "nav", "button", "small", "caption", "eyebrow"],
       radius: ["xs", "pill"],
-      tracking: ["eyebrow", "snug"],
-      leading: ["snug", "normal", "relaxed"],
+      tracking: ["display", "tight", "snug", "nav", "eyebrow"],
+      leading: ["display", "tight", "snug", "normal", "relaxed"],
       spacing: ["section-sm", "section-md", "section-lg"],
     },
   },

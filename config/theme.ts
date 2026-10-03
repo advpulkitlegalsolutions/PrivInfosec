@@ -1,22 +1,14 @@
 /**
  * Theme configuration (TypeScript side of the design system).
  * ------------------------------------------------------------------
- * Visual values live in styles/tokens.css. This file holds the theme
- * *behaviour* plus a typed index of the token names, so components and
+ * Visual values live in styles/tokens.css (the site is dark-only). This
+ * file holds the browser theme colour plus a typed index of the token names, so components and
  * the /design-system page can reference tokens without magic strings.
  */
 
-export const THEME_STORAGE_KEY = "pi-theme";
-
-export const themeModes = ["light", "dark", "system"] as const;
-export type ThemeMode = (typeof themeModes)[number];
-export type ResolvedTheme = Exclude<ThemeMode, "system">;
-
 export const themeConfig = {
-  /** Mode used when the visitor has not chosen one. */
-  defaultMode: "system" as ThemeMode,
-  /** Browser UI colour (address bar) per resolved theme. Mirrors --background. */
-  themeColor: { light: "#fcfbf8", dark: "#0b0e11" },
+  /** Browser UI colour (address bar). Mirrors the dark --background. */
+  themeColor: "#070707",
 } as const;
 
 /** Semantic colour tokens — documented on /design-system. */

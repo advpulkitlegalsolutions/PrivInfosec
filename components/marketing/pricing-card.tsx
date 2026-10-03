@@ -11,15 +11,15 @@ export function PricingCard({ tier, compact = false }: { tier: PricingTier; comp
 
   return (
     <article
-      data-theme={highlighted ? "dark" : undefined}
       aria-labelledby={`tier-${tier.id}`}
       className={cn(
-        "relative flex h-full flex-col rounded-xl border p-7 sm:p-8",
-        highlighted ? "border-border-accent bg-background text-foreground shadow-lg" : "border-border bg-surface-1",
+        "relative flex h-full flex-col rounded-lg border bg-card p-7 sm:p-8",
+        highlighted ? "border-border-accent-strong" : "border-card-border",
       )}
     >
+      {highlighted && <span aria-hidden="true" className="absolute inset-x-7 top-0 h-px bg-accent" />}
       {highlighted && (
-        <span className="absolute -top-3 left-7 rounded-pill bg-accent px-3 py-1 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-accent-foreground">
+        <span className="absolute -top-3 left-7 rounded-pill bg-accent px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-accent-foreground">
           {tier.highlight}
         </span>
       )}
@@ -30,7 +30,7 @@ export function PricingCard({ tier, compact = false }: { tier: PricingTier; comp
 
       <div className="mt-6 border-t border-border pt-6">
         {price.prefix && <p className="text-caption text-muted-foreground">{price.prefix}</p>}
-        <p className={cn("mt-1 font-heading font-semibold tracking-tight text-foreground", price.isCustom ? "text-h3" : "text-price whitespace-nowrap")}>
+        <p className={cn("mt-1 font-heading leading-tight font-semibold tracking-tight text-foreground", price.isCustom ? "text-h3" : "text-price whitespace-nowrap")}>
           {price.value}
         </p>
         {!price.isCustom && (

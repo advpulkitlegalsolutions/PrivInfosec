@@ -26,12 +26,12 @@ export function EngagementModelsSection({
       <ul className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {engagementModels.map((m, i) => (
           <Reveal as="li" key={m.id} delay={i * 80}>
-            <Card id={m.id} className="flex h-full scroll-mt-28 flex-col p-7">
+            <Card id={m.id} className="group flex h-full scroll-mt-28 flex-col p-7">
               <div className="flex items-center justify-between">
-                <span className="flex size-11 items-center justify-center rounded-md bg-accent-soft text-accent-text">
+                <span className="flex size-11 items-center justify-center rounded-md border border-border bg-surface-3 text-muted-foreground transition-colors duration-300 group-hover:border-border-accent group-hover:text-accent-text">
                   <Icon name={m.icon} className="size-5" />
                 </span>
-                <span className="font-mono text-caption text-muted-foreground">0{i + 1}</span>
+                <span className="font-medium tabular-nums text-caption text-muted-foreground">0{i + 1}</span>
               </div>
               <h3 className="mt-7 font-heading text-h4 font-semibold text-foreground">{m.title}</h3>
               <p className="mt-3 text-small leading-relaxed text-muted-foreground">{m.description}</p>

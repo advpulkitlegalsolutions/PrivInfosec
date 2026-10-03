@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 export const buttonVariants = cva(
   [
     "group/button relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap",
-    "font-medium tracking-[-0.005em] select-none",
+    "text-button font-semibold tracking-nav select-none",
     "transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out",
     "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring",
     "disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
@@ -14,19 +14,21 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
+        // Flat gold, gentle lift on hover. No shadow or glow.
         primary:
-          "bg-accent text-accent-foreground shadow-sm hover:bg-accent-hover active:translate-y-px",
+          "border border-accent bg-accent text-accent-foreground hover:-translate-y-0.5 hover:border-accent-hover hover:bg-accent-hover active:translate-y-0",
         secondary:
-          "bg-foreground text-background hover:opacity-90 active:translate-y-px",
+          "border border-foreground bg-foreground text-background hover:-translate-y-0.5 hover:opacity-90 active:translate-y-0",
+        // Secondary CTA: transparent with gold text and hairline.
         outline:
-          "border border-border-strong bg-transparent text-foreground hover:border-accent hover:bg-accent-soft",
-        ghost: "text-foreground hover:bg-muted",
-        link: "h-auto px-0 text-foreground underline-offset-4 decoration-accent hover:underline",
+          "border border-button-secondary-border bg-transparent text-button-secondary hover:border-accent hover:bg-accent-soft",
+        ghost: "text-foreground hover:bg-muted hover:text-accent-text",
+        link: "h-auto px-0 text-foreground underline-offset-4 decoration-border-accent hover:text-accent-text hover:underline hover:decoration-accent-text",
       },
       size: {
-        sm: "h-9 rounded-md px-3.5 text-small",
-        md: "h-11 rounded-md px-5 text-small",
-        lg: "h-12 rounded-md px-6 text-body",
+        sm: "h-10 rounded-md px-4",
+        md: "h-11 rounded-md px-5",
+        lg: "h-12 rounded-md px-6",
       },
     },
     compoundVariants: [{ variant: "link", class: "h-auto px-0" }],
@@ -74,7 +76,7 @@ export function IconButton({
       aria-label={label}
       className={cn(
         "inline-flex size-11 items-center justify-center rounded-md text-foreground transition-colors duration-200",
-        "hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+        "hover:bg-muted hover:text-accent-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
         "[&_svg]:size-5",
         className,
       )}

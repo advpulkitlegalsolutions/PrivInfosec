@@ -3,7 +3,6 @@ import { CookiePreferencesButton } from "@/components/privacy/cookie-preferences
 import { buttonVariants } from "@/components/ui/button";
 import { analyticsConfig } from "@/config/analytics";
 import { CONSENT_KEY } from "@/lib/consent";
-import { THEME_STORAGE_KEY } from "@/config/theme";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -39,14 +38,6 @@ export default function CookiesPage() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <code>{THEME_STORAGE_KEY}</code>
-            </td>
-            <td>Local storage</td>
-            <td>Remembers your light, dark or system theme choice.</td>
-            <td>Until cleared</td>
-          </tr>
           <tr>
             <td>
               <code>{CONSENT_KEY}</code>

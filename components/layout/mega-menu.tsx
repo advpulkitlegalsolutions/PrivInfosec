@@ -71,8 +71,8 @@ export function MegaMenu({ item, active }: { item: NavItem; active: boolean }) {
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "relative inline-flex h-10 items-center gap-1 rounded-md px-2.5 text-small font-medium transition-colors duration-200",
-          active || open ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+          "relative inline-flex h-10 items-center gap-1 rounded-md px-2.5 text-nav font-medium tracking-nav transition-colors duration-200",
+          active || open ? "text-nav-link-active" : "text-nav-link hover:text-nav-link-active",
           "after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:origin-left after:bg-accent after:transition-transform after:duration-300",
           active ? "after:scale-x-100" : "after:scale-x-0",
         )}
@@ -87,12 +87,12 @@ export function MegaMenu({ item, active }: { item: NavItem; active: boolean }) {
       <div
         id={panelId}
         hidden={!open}
-        className="absolute inset-x-0 top-full border-y border-border bg-surface-raised shadow-lg"
+        className="absolute inset-x-0 top-full border-y border-border bg-surface-2 shadow-lg"
       >
         <div className="mx-auto grid max-w-[var(--layout-wide)] grid-cols-12 gap-8 px-[var(--layout-gutter)] py-8">
           <div className="col-span-8">
             <div className="mb-4 flex items-center justify-between">
-              <p className="font-mono text-eyebrow uppercase tracking-eyebrow text-muted-foreground">Four practices</p>
+              <p className="text-eyebrow font-semibold uppercase tracking-eyebrow text-muted-foreground">Four practices</p>
               <Link
                 href="/services"
                 className="inline-flex items-center gap-1.5 text-small font-medium text-foreground hover:text-accent-text"
@@ -105,14 +105,14 @@ export function MegaMenu({ item, active }: { item: NavItem; active: boolean }) {
                 <li key={s.id}>
                   <Link
                     href={`/services/${s.slug}`}
-                    className="group flex gap-4 rounded-lg border border-transparent p-4 transition-colors hover:border-border hover:bg-surface-2"
+                    className="group flex gap-4 rounded-lg border border-transparent p-4 transition-colors hover:border-card-border hover:bg-card"
                   >
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border-accent bg-accent-soft text-accent-text">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface-3 text-muted-foreground transition-colors group-hover:border-border-accent group-hover:text-accent-text">
                       <Icon name={s.icon} className="size-5" />
                     </span>
                     <span>
                       <span className="flex items-baseline gap-2">
-                        <span className="font-mono text-caption text-accent-text">{s.number}</span>
+                        <span className="font-medium tabular-nums text-caption text-accent-text">{s.number}</span>
                         <span className="font-heading text-body font-semibold text-foreground">{s.title}</span>
                       </span>
                       <span className="mt-1 block text-small leading-snug text-muted-foreground">{s.shortDescription}</span>
@@ -126,11 +126,10 @@ export function MegaMenu({ item, active }: { item: NavItem; active: boolean }) {
             <Link
               href={megaMenuFeature.href}
               data-theme="dark"
-              className="group relative flex h-full flex-col justify-between overflow-hidden rounded-lg border border-border-accent bg-background p-6 text-foreground"
+              className="group relative flex h-full flex-col justify-between overflow-hidden rounded-lg border border-border-accent bg-background bg-ambient-gold p-6 text-foreground transition-colors hover:border-card-border-hover"
             >
-              <div aria-hidden="true" className="bg-grid pointer-events-none absolute inset-0 opacity-70" />
               <div className="relative">
-                <p className="font-mono text-eyebrow uppercase tracking-eyebrow text-accent-text">{megaMenuFeature.eyebrow}</p>
+                <p className="text-eyebrow font-semibold uppercase tracking-eyebrow text-accent-text">{megaMenuFeature.eyebrow}</p>
                 <p className="mt-3 font-heading text-h4 font-semibold">{megaMenuFeature.title}</p>
                 <p className="mt-2 text-small text-muted-foreground">{megaMenuFeature.description}</p>
               </div>

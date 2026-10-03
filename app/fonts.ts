@@ -1,30 +1,17 @@
 /**
  * Fonts — loaded and self-hosted at build time by next/font (no runtime
- * requests to Google). To change a typeface, swap the import here and keep
- * the same `variable` name; styles/tokens.css maps these variables to
- * --font-heading / --font-body / --font-mono.
+ * requests to Google). Rethink Sans is the single brand typeface, loaded
+ * as a variable font (weights set in CSS: 400 body, 500 nav/labels,
+ * 600 headings/buttons, 700 hero emphasis). To change it, swap the import
+ * and keep the `variable` name; styles/tokens.css maps it to
+ * --font-display / --font-heading / --font-body.
  */
-import { Inter, JetBrains_Mono, Manrope } from "next/font/google";
+import { Rethink_Sans } from "next/font/google";
 
-export const fontHeading = Manrope({
+export const fontSans = Rethink_Sans({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-rethink",
   display: "swap",
 });
 
-export const fontBody = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-export const fontMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-  // Only used for small labels — don't compete with LCP-critical fonts.
-  preload: false,
-  weight: ["400", "500"],
-});
-
-export const fontVariables = [fontHeading.variable, fontBody.variable, fontMono.variable].join(" ");
+export const fontVariables = fontSans.variable;

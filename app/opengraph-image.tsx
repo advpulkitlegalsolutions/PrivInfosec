@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/config/site";
 
@@ -6,10 +8,13 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 // Generated at build time. Colours mirror styles/tokens.css (ImageResponse cannot read CSS variables).
-const INK = "#0b0e11";
-const GOLD = "#c9a45c";
-const PAPER = "#f5f3ed";
-const MUTED = "#aaa69c";
+const INK = "#070707";
+const GOLD = "#c99a3d";
+const PAPER = "#f4f2ed";
+const MUTED = "#918e88";
+
+// Same artwork as the favicon (ink-on-dark variant of the monogram).
+const markSrc = `data:image/svg+xml;base64,${readFileSync(join(process.cwd(), "public/brand/logo-mark.svg")).toString("base64")}`;
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -28,12 +33,11 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <svg width="64" height="64" viewBox="0 0 32 32" fill="none">
-            <path d="M16 2.75 27 6.6v8.15c0 6.6-4.55 11.6-11 14.5-6.45-2.9-11-7.9-11-14.5V6.6L16 2.75Z" stroke={GOLD} strokeWidth="1.5" />
-            <path d="M12.75 22.5V9.75h4.6a3.65 3.65 0 0 1 0 7.3h-4.6" stroke={PAPER} strokeWidth="1.75" strokeLinecap="round" />
-          </svg>
+          <img src={markSrc} width={72} height={72} alt="" />
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 36, fontWeight: 700 }}>PrivInfosec</div>
+            <div style={{ display: "flex", fontSize: 36, fontWeight: 700 }}>
+              Priv<span style={{ color: GOLD }}>Infosec</span>
+            </div>
             <div style={{ fontSize: 14, letterSpacing: 8, color: MUTED }}>CONSULTING</div>
           </div>
         </div>

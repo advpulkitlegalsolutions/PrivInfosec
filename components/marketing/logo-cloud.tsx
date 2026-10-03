@@ -19,7 +19,7 @@ function ClientMark({ client, tone }: { client: Client; tone: "light" | "dark" }
   if (client.placeholder) {
     return (
       <div className="flex h-12 w-36 items-center justify-center rounded-md border border-dashed border-border-strong bg-surface-2 sm:w-40">
-        <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">Logo</span>
+        <span className="text-[0.625rem] font-semibold uppercase tracking-eyebrow text-muted-foreground">Logo</span>
       </div>
     );
   }
@@ -75,7 +75,7 @@ export function LogoCloud({
     <section aria-labelledby="clients-heading" className={cn("border-b border-border bg-background py-12 sm:py-14", className)}>
       <Container size="wide">
         <div className="flex flex-col items-center gap-3 text-center">
-          <h2 id="clients-heading" className="font-mono text-eyebrow uppercase tracking-eyebrow text-muted-foreground">
+          <h2 id="clients-heading" className="text-eyebrow font-semibold uppercase tracking-eyebrow text-muted-foreground">
             {heading}
           </h2>
           {hasPlaceholders && <PlaceholderBadge>Placeholder logos — replace with approved clients</PlaceholderBadge>}

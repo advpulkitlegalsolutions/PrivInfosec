@@ -108,7 +108,7 @@ export function ContactForm() {
 
   if (status.type === "success") {
     return (
-      <div role="status" className="rounded-xl border border-border-accent bg-surface-1 p-8 sm:p-10">
+      <div role="status" className="rounded-xl border border-border-accent bg-card p-8 sm:p-10">
         <CircleCheck aria-hidden="true" className="size-8 text-accent-text" strokeWidth={1.5} />
         <h2 className="mt-6 font-heading text-h3 font-semibold text-foreground">Thank you — your message has been received.</h2>
         <p className="mt-3 text-body text-muted-foreground">
@@ -238,7 +238,7 @@ export function ContactForm() {
           />
           <label htmlFor="consent" className="text-small leading-relaxed text-subtle-foreground">
             I agree that PrivInfosec Consulting may use the information I have provided to respond to my enquiry, as described in the{" "}
-            <Link href="/privacy" className="text-foreground underline decoration-accent underline-offset-4" target="_blank">
+            <Link href="/privacy" className="text-foreground underline decoration-border-accent underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent-text" target="_blank">
               Privacy Notice
             </Link>
             .<span className="ml-0.5 text-accent-text" aria-hidden="true">*</span>

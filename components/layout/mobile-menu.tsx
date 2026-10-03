@@ -8,7 +8,6 @@ import { Drawer } from "@/components/ui/dialog";
 import { mainNav } from "@/config/navigation";
 import { ctas } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./theme-toggle";
 
 const isActive = (pathname: string, href: string) =>
   href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
@@ -28,10 +27,6 @@ export function MobileMenu({ open, onClose, pathname }: { open: boolean; onClose
           <ButtonLink href={ctas.primary.href} size="lg" className="w-full" onClick={onClose}>
             {ctas.primary.label}
           </ButtonLink>
-          <div className="flex items-center justify-between">
-            <span className="text-caption text-muted-foreground">Theme</span>
-            <ThemeToggle />
-          </div>
         </div>
       }
     >
@@ -45,8 +40,8 @@ export function MobileMenu({ open, onClose, pathname }: { open: boolean; onClose
                   <details className="group" open={active}>
                     <summary
                       className={cn(
-                        "flex min-h-14 cursor-pointer items-center justify-between rounded-md px-3 font-heading text-h4 font-semibold",
-                        active ? "text-foreground" : "text-subtle-foreground",
+                        "flex min-h-14 cursor-pointer items-center justify-between rounded-md px-3 font-heading text-h4 font-medium tracking-nav",
+                        active ? "text-nav-link-active" : "text-foreground",
                       )}
                     >
                       {item.label}
@@ -57,7 +52,7 @@ export function MobileMenu({ open, onClose, pathname }: { open: boolean; onClose
                         <Link
                           href={item.href}
                           onClick={onClose}
-                          className="flex min-h-12 items-center gap-2 rounded-md px-3 text-body text-muted-foreground hover:text-foreground"
+                          className="flex min-h-12 items-center gap-2 rounded-md px-3 text-body text-nav-link hover:text-nav-link-active"
                         >
                           All services <ArrowRight aria-hidden="true" className="size-4" />
                         </Link>
@@ -70,7 +65,7 @@ export function MobileMenu({ open, onClose, pathname }: { open: boolean; onClose
                             aria-current={pathname === child.href ? "page" : undefined}
                             className={cn(
                               "flex min-h-12 items-center rounded-md px-3 py-2 text-body",
-                              pathname === child.href ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                              pathname === child.href ? "text-nav-link-active" : "text-nav-link hover:text-nav-link-active",
                             )}
                           >
                             {child.label}
@@ -89,8 +84,8 @@ export function MobileMenu({ open, onClose, pathname }: { open: boolean; onClose
                   onClick={onClose}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "flex min-h-14 items-center gap-3 rounded-md px-3 font-heading text-h4 font-semibold",
-                    active ? "text-foreground" : "text-subtle-foreground hover:text-foreground",
+                    "flex min-h-14 items-center gap-3 rounded-md px-3 font-heading text-h4 font-medium tracking-nav",
+                    active ? "text-nav-link-active" : "text-foreground hover:text-nav-link-active",
                   )}
                 >
                   {active && <span aria-hidden="true" className="h-4 w-px bg-accent" />}

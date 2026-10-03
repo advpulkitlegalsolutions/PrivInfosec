@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { siteConfig } from "@/config/site";
 import { themeConfig } from "@/config/theme";
 import { createMetadata, organizationSchema, websiteSchema } from "@/lib/seo";
-import { themeInitScript } from "@/lib/theme";
+import { jsFlagScript } from "@/lib/theme";
 import { fontVariables } from "./fonts";
 import "@/styles/globals.css";
 
@@ -18,16 +18,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: themeConfig.themeColor.light,
-  colorScheme: "light dark",
+  themeColor: themeConfig.themeColor,
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={fontVariables} data-theme="light" suppressHydrationWarning>
+    <html lang="en" className={fontVariables} data-theme="dark" suppressHydrationWarning>
       <head>
-        {/* Sets the theme before first paint (static, trusted string). */}
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* Marks JS as available before first paint (static, trusted string). */}
+        <script dangerouslySetInnerHTML={{ __html: jsFlagScript }} />
       </head>
       <body className="flex min-h-dvh flex-col">
         <SiteHeader />

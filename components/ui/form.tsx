@@ -2,12 +2,12 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const controlBase = [
-  "w-full rounded-md border border-border-strong bg-surface-1 px-3.5 text-body text-foreground",
-  "placeholder:text-muted-foreground/80",
+  "w-full rounded-md border border-input-border bg-input px-3.5 text-body text-foreground",
+  "placeholder:text-input-placeholder",
   "transition-[border-color,box-shadow] duration-200",
-  "hover:border-muted-foreground/60",
-  "focus:border-accent focus:outline-none focus:ring-3 focus:ring-accent-soft",
-  "aria-invalid:border-danger aria-invalid:focus:ring-danger-soft",
+  "hover:border-faint-foreground",
+  "focus:border-accent focus:shadow-focus focus:outline-none",
+  "aria-invalid:border-danger",
   "disabled:cursor-not-allowed disabled:opacity-60",
 ].join(" ");
 
@@ -50,7 +50,7 @@ export function Checkbox({ className, ...props }: Omit<React.InputHTMLAttributes
     <input
       type="checkbox"
       className={cn(
-        "mt-0.5 size-5 shrink-0 cursor-pointer rounded-sm border border-border-strong bg-surface-1 accent-accent",
+        "mt-0.5 size-5 shrink-0 cursor-pointer rounded-xs border border-input-border bg-input accent-accent",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
         className,
       )}
