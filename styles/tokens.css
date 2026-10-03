@@ -1,0 +1,277 @@
+/*
+ * PrivInfosec Consulting — Design Tokens
+ * ------------------------------------------------------------------
+ * Single source of truth for every visual decision on the site.
+ * Components reference SEMANTIC tokens only (e.g. --accent, --surface-2),
+ * never the raw palette below and never hard-coded hex values.
+ *
+ *   1. Palette (raw, theme-independent)
+ *   2. Semantic tokens — light theme (default)
+ *   3. Semantic tokens — dark theme
+ *   4. Scales (@theme): typography, spacing, radius, easing
+ *   5. Layout, motion durations, z-index (inside :root)
+ *
+ * To re-skin the site, change the palette or the semantic mapping here.
+ * See README → "Theme" for worked examples.
+ */
+
+:root {
+  /* ---------------------------------------------------------------- */
+  /* 1. PALETTE                                                        */
+  /* ---------------------------------------------------------------- */
+
+  /* Gold — brand accent. 500 is the signature tone. */
+  --palette-gold-100: #f6eedc;
+  --palette-gold-200: #ecdcb6;
+  --palette-gold-300: #e2cb94;
+  --palette-gold-400: #d6b673;
+  --palette-gold-500: #c9a45c;
+  --palette-gold-600: #b38c45;
+  --palette-gold-700: #7d5f28; /* AA text on light surfaces */
+  --palette-gold-800: #6b5124;
+
+  /* Ink — warm near-blacks. */
+  --palette-ink-950: #07090b;
+  --palette-ink-900: #0b0e11;
+  --palette-ink-850: #0f1316;
+  --palette-ink-800: #14191d;
+  --palette-ink-750: #1a2025;
+  --palette-ink-700: #232a30;
+  --palette-ink-600: #2f373e;
+  --palette-ink-500: #4a535b;
+
+  /* Paper — warm off-whites. */
+  --palette-paper-0: #ffffff;
+  --palette-paper-50: #fcfbf8;
+  --palette-paper-100: #f7f5ef;
+  --palette-paper-200: #efebe0;
+  --palette-paper-300: #e2dccd;
+  --palette-paper-400: #cfc7b3;
+
+  /* Neutral text tones */
+  --palette-stone-900: #111315;
+  --palette-stone-700: #3d3a35;
+  --palette-stone-600: #5c5952;
+  --palette-stone-300: #b3afa5;
+  --palette-stone-200: #d2cec4;
+  --palette-stone-100: #f3f0e8;
+
+  /* Status */
+  --palette-green-700: #1f6b46;
+  --palette-green-300: #7fcfa4;
+  --palette-amber-700: #8a5a00;
+  --palette-amber-300: #f0c26a;
+  --palette-red-700: #a32c22;
+  --palette-red-300: #f2958b;
+
+}
+
+/* Light is the default; [data-theme="light"] lets a subtree opt back in. */
+:root,
+[data-theme="light"] {
+  /* ---------------------------------------------------------------- */
+  /* 2. SEMANTIC — LIGHT (default)                                     */
+  /* ---------------------------------------------------------------- */
+  color-scheme: light;
+
+  --brand-primary: var(--palette-gold-500);
+  --brand-primary-hover: var(--palette-gold-600);
+  --brand-primary-soft: var(--palette-gold-300);
+  --brand-ink: var(--palette-ink-950);
+  --brand-ink-soft: var(--palette-ink-800);
+
+  --background: var(--palette-paper-50);
+  --foreground: var(--palette-stone-900);
+
+  --surface-1: var(--palette-paper-0);
+  --surface-2: var(--palette-paper-100);
+  --surface-3: var(--palette-paper-200);
+  --surface-raised: var(--palette-paper-0);
+  --surface-overlay: rgb(252 251 248 / 0.82);
+
+  --border: var(--palette-paper-300);
+  --border-strong: var(--palette-paper-400);
+  --border-accent: rgb(179 140 69 / 0.45);
+
+  --muted: var(--palette-stone-100);
+  --muted-foreground: var(--palette-stone-600);
+  --subtle-foreground: var(--palette-stone-700);
+
+  /* Accent: gold fills (buttons, dots, rules). Never long-form text. */
+  --accent: var(--palette-gold-500);
+  --accent-hover: var(--palette-gold-600);
+  --accent-foreground: var(--palette-ink-950);
+  --accent-soft: rgb(201 164 92 / 0.12);
+  /* Accent used AS TEXT/ICON — darkened for WCAG AA on light surfaces. */
+  --accent-text: var(--palette-gold-700);
+
+  --gradient-metal: linear-gradient(
+    135deg,
+    var(--palette-gold-300) 0%,
+    var(--palette-gold-500) 45%,
+    var(--palette-gold-600) 100%
+  );
+  --gradient-fade: linear-gradient(180deg, var(--surface-2) 0%, var(--background) 100%);
+
+  --ring: var(--palette-gold-700);
+  --grid-line: rgb(17 19 21 / 0.05);
+
+  --success: var(--palette-green-700);
+  --success-soft: rgb(31 107 70 / 0.1);
+  --warning: var(--palette-amber-700);
+  --warning-soft: rgb(138 90 0 / 0.1);
+  --danger: var(--palette-red-700);
+  --danger-soft: rgb(163 44 34 / 0.08);
+
+  --elevation-sm: 0 1px 2px rgb(17 19 21 / 0.05);
+  --elevation-md: 0 1px 2px rgb(17 19 21 / 0.04), 0 8px 24px -12px rgb(17 19 21 / 0.12);
+  --elevation-lg: 0 2px 4px rgb(17 19 21 / 0.04), 0 24px 48px -24px rgb(17 19 21 / 0.22);
+
+
+  /* Raw spacing tokens for hand-written CSS. In markup use the Tailwind
+     numeric scale, which shares the same 4px base:
+     2xs=1  xs=2  sm=3  md=4  lg=6  xl=8  2xl=12  3xl=16  4xl=24        */
+  --space-2xs: 0.25rem; /*  4px */
+  --space-xs: 0.5rem; /*  8px */
+  --space-sm: 0.75rem; /* 12px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
+  --space-4xl: 6rem; /* 96px */
+  /* ---------------------------------------------------------------- */
+  /* LAYOUT                                                            */
+  /* ---------------------------------------------------------------- */
+  --layout-max: 76rem; /* 1216px */
+  --layout-wide: 86rem; /* 1376px */
+  --layout-prose: 42rem;
+  --layout-gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --layout-header: 4.5rem;
+  --layout-header-compact: 3.75rem;
+
+  /* Motion durations */
+  --duration-fast: 150ms;
+  --duration-base: 240ms;
+  --duration-slow: 600ms;
+  --duration-reveal: 800ms;
+  --z-header: 50;
+  --z-overlay: 80;
+}
+
+
+/* ------------------------------------------------------------------ */
+/* SCALES — declared with Tailwind's @theme so each token is emitted   */
+/* as a CSS variable AND generates a utility (rounded-lg, text-h2,     */
+/* font-heading, py-section-md, ease-out …).                            */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* ---------------------------------------------------------------- */
+  /* TYPOGRAPHY                                                        */
+  /* ---------------------------------------------------------------- */
+  /* The font-family variables (--font-manrope etc.) are injected by     */
+  /* next/font in app/fonts.ts. Swap fonts there; these stay the same.   */
+  --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+
+  --text-display: clamp(2.5rem, 1.6rem + 3.8vw, 4.5rem);
+  --text-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+  --text-h2: clamp(1.75rem, 1.35rem + 1.6vw, 2.625rem);
+  --text-h3: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
+  --text-h4: 1.125rem;
+  --text-price: clamp(1.75rem, 1.5rem + 0.6vw, 2.125rem);
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.8125rem;
+  --text-eyebrow: 0.75rem;
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.22;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.72;
+
+  --tracking-tight: -0.025em;
+  --tracking-snug: -0.015em;
+  --tracking-eyebrow: 0.16em;
+
+  /* ---------------------------------------------------------------- */
+  /* SPACING — 4px base, 8px rhythm                                    */
+  /* ---------------------------------------------------------------- */
+  --spacing: 0.25rem; /* Tailwind numeric scale: 1 = 4px, 2 = 8px … */
+  --spacing-section-sm: clamp(3rem, 2rem + 4vw, 4.5rem);
+  --spacing-section-md: clamp(4rem, 2.5rem + 6vw, 7rem);
+  --spacing-section-lg: clamp(5rem, 3rem + 8vw, 9rem);
+
+  /* ---------------------------------------------------------------- */
+  /* RADIUS — restrained; consulting, not consumer app                 */
+  /* ---------------------------------------------------------------- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 20px;
+  --radius-pill: 999px;
+
+  /* Easing */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. SEMANTIC — DARK                                                  */
+/* Designed, not inverted: warmer inks, lifted surfaces, brighter gold */
+/* text tone, softer borders and deeper shadows.                        */
+/* `data-theme="dark"` can be set on <html> (site-wide) or on any       */
+/* element to render that subtree as an "ink" band.                     */
+/* ------------------------------------------------------------------ */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: var(--palette-ink-900);
+  --foreground: #f5f3ed;
+
+  --surface-1: var(--palette-ink-850);
+  --surface-2: var(--palette-ink-800);
+  --surface-3: var(--palette-ink-750);
+  --surface-raised: var(--palette-ink-800);
+  --surface-overlay: rgb(11 14 17 / 0.8);
+
+  --border: #262c31;
+  --border-strong: #353d44;
+  --border-accent: rgb(208 173 101 / 0.35);
+
+  --muted: var(--palette-ink-750);
+  --muted-foreground: #aaa69c;
+  --subtle-foreground: #cdc9bf;
+
+  --accent: #d0ad65;
+  --accent-hover: var(--palette-gold-400);
+  --accent-foreground: var(--palette-ink-950);
+  --accent-soft: rgb(208 173 101 / 0.1);
+  --accent-text: var(--palette-gold-400);
+
+  --gradient-fade: linear-gradient(180deg, var(--surface-1) 0%, var(--background) 100%);
+
+  --ring: var(--palette-gold-400);
+  --grid-line: rgb(245 243 237 / 0.045);
+
+  --success: var(--palette-green-300);
+  --success-soft: rgb(127 207 164 / 0.1);
+  --warning: var(--palette-amber-300);
+  --warning-soft: rgb(240 194 106 / 0.1);
+  --danger: var(--palette-red-300);
+  --danger-soft: rgb(242 149 139 / 0.1);
+
+  --elevation-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --elevation-md: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  --elevation-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 32px 64px -32px rgb(0 0 0 / 0.75);
+}
+
+/* "Ink" band inside an already-dark page: lift slightly so it still reads
+   as a distinct band rather than merging with the page background. */
+[data-theme="dark"] [data-theme="dark"][data-band="ink"] {
+  --background: var(--palette-ink-950);
+}
